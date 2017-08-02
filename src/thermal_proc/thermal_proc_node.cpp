@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <cmath>
 
-#include <opencv2/contrib/contrib.hpp>
+//#include <opencv2/contrib/contrib.hpp>
 
 namespace flir_gige {
 
@@ -45,6 +45,7 @@ void ThermalProcNode::CameraCb(
     const sensor_msgs::ImageConstPtr &image_msg,
     const sensor_msgs::CameraInfoConstPtr &cinfo_msg) {
   // Verify camera is actually calibrated
+  /*
   if (cinfo_msg->K[0] == 0.0 || cinfo_msg->D[0] == 0.0) {
     ROS_ERROR_THROTTLE(5,
                        "Topic '%s' requested but "
@@ -53,6 +54,7 @@ void ThermalProcNode::CameraCb(
                        sub_camera_.getInfoTopic().c_str());
     return;
   }
+  */
 
   if (pub_proc_.getNumSubscribers()) {
     const Planck planck = GetPlanck(*cinfo_msg);
